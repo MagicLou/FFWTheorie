@@ -53,14 +53,18 @@ public class GUI extends JFrame {
                 if(questions.isEmpty()){
                     System.out.println("Time:" + getTitle());
                     System.out.println("Richtig: " + correct.size() + "/40");
-                    System.out.println("Falsch:");
-                    for (Question question : wrong) {
-                        System.out.println(question.getNr());
+                    if(correct.size() == 40){
+                        System.out.println("Falsch: 0");
+                    }else {
+                        System.out.println("Falsch:");
+                        for (Question question : wrong) {
+                            System.out.println(question.getNr());
+                        }
+                        for (Question question : wrong) {
+                            questions.add(question);
+                        }
+                        wrong.clear();
                     }
-                    for (Question question : wrong) {
-                        questions.add(question);
-                    }
-                    wrong.clear();
 
                 }
                 if(questions.isEmpty()){

@@ -29,10 +29,10 @@ public class GUI extends JFrame {
         this.questions = questions;
         setContentPane(panel1);
         setTitle("");
-        setSize(600, 300);
+        setSize(1000, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
         setLocationRelativeTo(null);
+        setVisible(true);
         startTime = System.currentTimeMillis();
 
         boxes.add(ans1);
@@ -51,26 +51,9 @@ public class GUI extends JFrame {
                 if(!questions.isEmpty())
                     questions.remove(0);
                 if(questions.isEmpty()){
-                    System.out.println("Time:" + getTitle());
-                    System.out.println("Richtig: " + correct.size() + "/40");
-                    if(correct.size() == 40){
-                        System.out.println("Falsch: 0");
-                    }else {
-                        System.out.println("Falsch:");
-                        for (Question question : wrong) {
-                            System.out.println(question.getNr());
-                        }
-                        for (Question question : wrong) {
-                            questions.add(question);
-                        }
-                        wrong.clear();
-                    }
-
-                }
-                if(questions.isEmpty()){
-                    System.out.println("Final Time:" + getTitle());
-                    System.exit(0);
-
+                    Result result = new Result(correct.size(),wrong.size(),System.currentTimeMillis()-startTime,wrong);
+                    setVisible(false);
+                    return;
                 }
 
                 for (JCheckBox box : boxes) {

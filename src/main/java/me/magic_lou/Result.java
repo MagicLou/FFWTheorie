@@ -31,9 +31,15 @@ public class Result extends JFrame {
         wiederholen.setVisible(false);
         if (!wrong.isEmpty()) {
             StringBuilder builder = new StringBuilder();
-            builder.append("Falsch beantwortete Fragen: ");
+            builder.append("Falsch beantwortete Fragen: ").append("\n");
+            int i = 0;
             for (Question question : wrong) {
                 builder.append("Nr.").append(question.getNr()).append(", ");
+                i++;
+                if(i > 5){
+                    builder.append("\n");
+                    i = 0;
+                }
             }
             builder.replace(builder.length() - 2, builder.length(), "");
             welche.setText(builder.toString());
